@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
-function GuessInput() {
-  const [guess, setGuess] = useState("");
+function GuessInput({ handleSubmitGuess }) {
+  const [tentativeGuess, setTentativeGuess] = useState("");
 
   function handleSumbit(event) {
     event.preventDefault();
-    if (guess.length !== 5) {
+    if (tentativeGuess.length !== 5) {
       window.alert("Please enter Exactly 5 Character ");
       return;
     }
-    console.log(guess);
-    setGuess("");
+    handleSubmitGuess(tentativeGuess);
+    setTentativeGuess("");
   }
   return (
     <form className="guess-input-wrapper" onSubmit={handleSumbit}>
@@ -18,8 +18,8 @@ function GuessInput() {
       <input
         id="guess-input"
         type="text"
-        value={guess}
-        onChange={(event) => setGuess(event.target.value.toUpperCase())}
+        value={tentativeGuess}
+        onChange={(event) => setTentativeGuess(event.target.value.toUpperCase())}
       />
     </form>
   );
